@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>TestWeb2018</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  <!--  
+  <jsp-config>
+      <taglib>
+          <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+          <taglib-location>/WEB-INF/c.tld</taglib-location>
+      </taglib>
+  </jsp-config>
+-->
+  
+  <servlet>
+  <servlet-name>TestServlet</servlet-name>
+  <servlet-class>TestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>TestServlet</servlet-name>
+  <url-pattern>/testServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>LoginServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>LoginServlet</servlet-name>
+  <url-pattern>/loginServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>SignupServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.SignupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>SignupServlet</servlet-name>
+  <url-pattern>/signupServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>Loginout</servlet-name>
+   <servlet-class>cn.edu.lingnan.servlet.Loginout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>Loginout</servlet-name>
+  <url-pattern>/Loginout</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+  <filter-name>AuthorityFilter</filter-name>
+  <filter-class>cn.edu.lingnan.filter.AuthorityFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  <filter-name>AuthorityFilter</filter-name>
+  <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  <!--  
+  <filter>
+  <filter-name>CharacterFilter</filter-name>
+  <filter-class>cn.edu.lingnan.filter.CharacterFilter</filter-class>
+  <init-param>
+  <param-name>newcharset</param-name>
+  <param-value>gb2312</param-value>
+  </init-param>
+  </filter>
+ 
+  <filter-mapping>
+  <filter-name>CharacterFilter</filter-name>
+  <url-pattern>/*</url-pattern>
+  </filter-mapping>
+   -->
+  <servlet>
+  <servlet-name>PageServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.PageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>PageServlet</servlet-name>
+  <url-pattern>/PageServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>DishfindServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.DishfindServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>DishfindServlet</servlet-name>
+  <url-pattern>/dishfindServlet</url-pattern>
+  </servlet-mapping>
+ 
+ <servlet>
+  <servlet-name>DishClassServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.DishClassServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>DishClassServlet</servlet-name>
+  <url-pattern>/dishClassServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>Cartservlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.Cartservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>Cartservlet</servlet-name>
+  <url-pattern>/cartservlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>DeskOrderSerlvet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.DeskOrderSerlvet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>DeskOrderSerlvet</servlet-name>
+  <url-pattern>/deskOrderSerlvet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>SuredeskorderServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.SuredeskorderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>SuredeskorderServlet</servlet-name>
+  <url-pattern>/suredeskorderServlet</url-pattern>
+  </servlet-mapping>
+  
+ <servlet>
+  <servlet-name>CanceldeskorderServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.CanceldeskorderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>CanceldeskorderServlet</servlet-name>
+  <url-pattern>/canceldeskorderServlet</url-pattern>
+  </servlet-mapping> 
+  
+   <servlet>
+  <servlet-name>SubmitOrder</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.SubmitOrder</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>SubmitOrder</servlet-name>
+  <url-pattern>/submitOrder</url-pattern>
+  </servlet-mapping> 
+  
+  <servlet>
+  <servlet-name>FileUpload</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.FileUpload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>FileUpload</servlet-name>
+  <url-pattern>/admin/FileUpload</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>AdminFindDishServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.AdminFindDishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>AdminFindDishServlet</servlet-name>
+  <url-pattern>/admin/ddminFindDishServlet</url-pattern>
+  </servlet-mapping>
+   
+   
+ <servlet>
+  <servlet-name>AdminFindUserServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.AdminFindUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>AdminFindUserServlet</servlet-name>
+  <url-pattern>/admin/adminFindUserServlet</url-pattern>
+  </servlet-mapping> 
+  
+    <servlet>
+  <servlet-name>UpdateDishServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.UpdateDishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>UpdateDishServlet</servlet-name>
+  <url-pattern>/admin/updateDishServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>DeleteDishServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.DeleteDishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>DeleteDishServlet</servlet-name>
+  <url-pattern>/admin/deleteDish</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>DeskListSerlvet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.DeskListSerlvet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>DeskListSerlvet</servlet-name>
+  <url-pattern>/admin/deskListServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  <servlet-name>UpdateDeskServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.UpdateDeskServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>UpdateDeskServlet</servlet-name>
+  <url-pattern>/admin/updateDeskServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+<servlet>
+  <servlet-name>DeleteDeskServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.DeleteDeskServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>DeleteDeskServlet</servlet-name>
+  <url-pattern>/admin/deleteDesk</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>OrderListServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.OrderListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>OrderListServlet</servlet-name>
+  <url-pattern>/admin/orderListServlet</url-pattern>
+  </servlet-mapping>   
+  
+  <servlet>
+  <servlet-name>DeleteOrderServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.DeleteOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>DeleteOrderServlet</servlet-name>
+  <url-pattern>/admin/deleteOrder</url-pattern>
+  </servlet-mapping> 
+ 
+ 
+ <servlet>
+  <servlet-name>SureUnOrderServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.SureUnOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>SureUnOrderServlet</servlet-name>
+  <url-pattern>/admin/sureUnOrderServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>UpdateUnOrderServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.UpdateUnOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>UpdateUnOrderServlet</servlet-name>
+  <url-pattern>/admin/updateUnOrder</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>SureHiOrderServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.SureHiOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>SureHiOrderServlet</servlet-name>
+  <url-pattern>/admin/sureHiOrderServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+  <servlet-name>UpdateHiOrderServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.UpdateHiOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>UpdateHiOrderServlet</servlet-name>
+  <url-pattern>/admin/updateHiOrder</url-pattern>
+  </servlet-mapping>
+  
+ 
+  <servlet>
+  <servlet-name>UpdateUserServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.UpdateUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>UpdateUserServlet</servlet-name>
+  <url-pattern>/admin/updateUserServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>DeleteUserServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.DeleteUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>DeleteUserServlet</servlet-name>
+  <url-pattern>/admin/deleteUser</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>AdminMangerServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.AdminMangerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>AdminMangerServlet</servlet-name>
+  <url-pattern>/admin/adminMangerServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+  <servlet-name>UpdateMangerServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.UpdateMangerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>UpdateMangerServlet</servlet-name>
+  <url-pattern>/admin/updateMangerServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+ <servlet>
+  <servlet-name>InsertUserServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.InsertUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>InsertUserServlet</servlet-name>
+  <url-pattern>/admin/insertUserServlet</url-pattern>
+  </servlet-mapping> 
+  
+ 
+  <servlet>
+  <servlet-name>insertDeskServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.insertDeskServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>insertDeskServlet</servlet-name>
+  <url-pattern>/admin/insertDeskServlet</url-pattern>
+  </servlet-mapping> 
+
+  
+  <servlet>
+  <servlet-name>FileUpload_1</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.FileUpload_1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>FileUpload_1</servlet-name>
+  <url-pattern>/admin/FileUpload_1</url-pattern>
+  </servlet-mapping>
+  
+
+  <servlet>
+  <servlet-name>InsertDishServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.InsertDishServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>InsertDishServlet</servlet-name>
+  <url-pattern>/admin/insertDishServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>CheckUserNameServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.CheckUserNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>CheckUserNameServlet</servlet-name>
+  <url-pattern>/servlet/CheckUserNameServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  <servlet-name>insertOrderServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.insertOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>insertOrderServlet</servlet-name>
+  <url-pattern>/admin/insertOrderServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <servlet>
+  <servlet-name>InsertMangerServlet</servlet-name>
+  <servlet-class>cn.edu.lingnan.servlet.InsertMangerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>InsertMangerServlet</servlet-name>
+  <url-pattern>/admin/insertMangerServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
