@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        ">
+    <!-- bean definitions here -->
+ <context:component-scan base-package="com.neuedu.room.service.impl"></context:component-scan>
+
+
+
+<!-- 也就是加载properties文件 -->
+        <context:property-placeholder location="classpath:sys.properties"/>
+        
+        <bean class="com.neuedu.room.utils.Sys"></bean>
+         
+<bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource">
+<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+<property name="url" value="jdbc:mysql://localhost:3306/college"></property>
+<property name="username" value="root"></property>
+<property name="password" value="root"></property>
+</bean>
+
+<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+<property name="dataSource" ref="datasource"></property>
+<property name="configLocation" value="classpath:mybatis.xml"></property>
+<property name="mapperLocations" value="classpath:com/neuedu/room/mapper/*Mapper.xml"></property>
+
+<!-- dataSource //数据库的连接信息[连接池]-->
+        <!-- configLocation  指定mybatis主配置文件-->
+        <!-- mapperLocations  指定映射文件（sql）-->
+</bean>
+
+<!-- 让spring找到UserMapper接口 ，接口扫描；第一，扫描包下的所有接口；第二，为每个接口动态创建一个对象并放在容器中-->
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<property name="basePackage" value="com.neuedu.room.dao"></property>
+</bean>
+</beans>

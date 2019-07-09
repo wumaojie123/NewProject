@@ -1,0 +1,153 @@
+/*----------------公共类----------------------------*/
+body {
+    font-family: 'Helvetica Neue',
+    Helvetica,
+    Microsoft Yahei,
+    WenQuanYi Micro Hei,
+    sans-serif;
+
+}
+
+
+
+ul{
+    list-style: none;
+}
+
+
+/*----------------导航----------------------------*/
+
+.jg-nav{
+    background-color: #fff;
+    margin-bottom: 0;
+    border: none;
+}
+
+.jg-nav .logo{
+    width: 280px;
+}
+.jg-nav .logo-img{
+    padding-left: 50px;
+}
+
+.navbar-nav li a{
+    line-height: 60px;
+    position: relative;
+}
+
+
+/*.collapse .navbar-nav li>a:hover,*/
+
+.collapse .navbar-nav li.active>a,
+.collapse .navbar-nav li.active>a:hover,
+.collapse .navbar-nav li.active a:focus{
+    color:rgb(50,139,254);
+    background-color: transparent;
+    /*border-bottom: 3px solid rgb(50,139,254);*/
+
+}
+
+.collapse .navbar-nav li.active>a::before{
+    content: '';
+    background-color: rgb(50,139,254);
+    width: 24px;
+    height: 3px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    margin-left: -12px;
+
+}
+@media screen and (max-width: 767px) {
+    .navbar-nav li a{
+        line-height: 20px;
+    }
+
+    .collapse .navbar-nav li.active>a,
+    .collapse .navbar-nav li.active>a:hover,
+    .collapse .navbar-nav li.active a:focus{
+        border-bottom: 3px solid rgb(50,139,254);
+
+    }
+
+    .collapse .navbar-nav li.active>a::before{
+        display: none;
+    }
+
+    .jg-nav .logo-img{
+        padding-left: 10px;
+        height: 100%;
+    }
+
+}
+
+
+/*右边*/
+
+.nav-right{
+    float: right;
+    font-size: 12px;
+    color:rgb(51,51,51);
+    padding-top: 25px;
+}
+.nav-right p{
+    line-height: 20px;
+    overflow: hidden;
+}
+.nav-right p span{
+    float: right;
+    padding-left: 21px;
+
+}
+
+/*footer*/
+.footer{
+    height: 60px;
+    background-color: #000;
+    color:#fff;
+    padding: 0;
+    text-align: center;
+    font-size: 12px;
+    padding: 10px;
+}
+.footer p{
+
+    line-height: 20px;
+    margin-bottom: 0;
+}
+
+/*分页*/
+/*分页*/
+.zhuanti-page{
+    width: 100%;
+    background-color: #e2e2e2;
+    padding: 25px 0px;
+    overflow: hidden;
+    text-align: center;
+
+}
+
+
+
+.zhuanti-page span{
+    display: inline-block;
+    background-color: #f1f1f1;
+    padding:5px 15px;
+    border: 1px solid #ccc;
+    margin-right: 3px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.zhuanti-page span a{
+    text-decoration: none;
+}
+.zhuanti-page span.active{
+
+    background-color: #dedede;
+
+}
+.zhuanti-page span.active a{
+    color:#000;
+}

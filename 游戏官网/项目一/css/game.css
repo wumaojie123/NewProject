@@ -1,0 +1,89 @@
+
+.youxi{
+    margin: 0;
+    padding: 0;
+}
+.nav-tabs{
+    height: 60px;
+    border: none;
+    background-color: #000;
+    padding-right: 45px;
+}
+
+
+.nav-tabs>li {
+    float: right;
+    margin-left: 33px;
+
+}
+.nav-tabs>li>a{
+    padding: 0;
+    line-height: 60px;
+    position: relative;
+}
+
+.nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover {
+    color:#fff;
+    cursor: default;
+    background-color: transparent;
+    border: none;
+}
+
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color:#fff;
+    cursor: default;
+    background-color: transparent;
+    border: none;
+}
+.nav-tabs>li.active>a::before{
+    content: '';
+    position: absolute;
+    width: 44px;
+    height: 3px;
+    left: 50%;
+    bottom: 1px;
+    margin-left: -22px;
+    background-color: rgb(188,15,28);
+}
+.youxi-content{
+    font-size: 0;
+}
+.youxi-content .row>div{
+    overflow: hidden;
+    padding: 0;
+}
+
+.youxi-content img{
+    width: 100%;
+    vertical-align: top;
+}
+.youxi-content .pos{
+    position: relative;
+}
+.youxi-content .pos p{
+    margin-bottom: 0;
+    font-size: 14px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    bottom: 0;
+    color:#fff;
+    line-height: 50px;
+
+}
+.youxi-content .pos:hover p{
+    background: rgba(208,0,0,0.7);
+}
+
+
+/*分页*/
+.zhuanti-page.game-page{
+    background-color: #fff;
+}
+
+.zhuanti-page.game-page span{
+    background-color: #fff;
+}

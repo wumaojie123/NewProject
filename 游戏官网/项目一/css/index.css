@@ -1,0 +1,34 @@
+
+/*----------------轮播图----------------------------*/
+.luobo{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.luobo .carousel-indicators{
+    position: absolute;
+    bottom:0px;
+    left: 30px;
+}
+.luobo .carousel-caption{
+    position: absolute;
+    bottom:0px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(0,0,0,0.5);
+    padding: 0;
+
+    padding-top: 10px;
+
+}
+.luobo .carousel-caption p{
+    font-size: 12px;
+    overflow: hidden;
+    text-align: right;
+    margin: 0;
+    padding-right: 20px;
+
+}
+
+/*-------------------footer---------------------------*/
