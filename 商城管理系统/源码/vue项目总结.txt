@@ -1,0 +1,408 @@
+
+1. webpack的编译过程
+创建项目的入口文件main.js，是所有其他js文件导入的位置。所有其他文件必须导出（module.exports），然后在main.js中导入(require)导出的文件。
+main.js是在开发的时候使用，运行的时候调用的是build.js，所以最后在index.html页面中导入的是build.js文件（注意路径）
+
+通过手动输入命令的方式（webpack main.js build.js）来生成build.js文件来说比较麻烦，所以可以通过配置文件（webpack.congfig.js）生成。后面直接使用webpack打包，根据配置文件打包。
+
+通过cnpm安装下载各种loader包，对相应的文件进行打包，然后在配置文件中对相应的文件进行配置，确保文件都导入到入口文件后，使用webpack打包。
+
+利用webpack-dev-server实现热刷新配置，当代码更新的时候自动重新打包和刷新浏览器。（会自动生成index.html文件）执行npm run dev命令开启webpack-dev-server服务器来运行vue项目。
+
+2.
+创建文件夹：
+src是用来存储所有的js文件；
+dist是用来存储打包后生成的文件（build.js）,运行代码的时候使用;
+statics是用来存储其他静态资源（css文件夹中存储.css文件和.scss文件）
+
+
+配置文件主要作用？
+指定打包的入口文件和输出的文件，指定各种需要的loader包以及文件的配置要求
+
+
+3. webpack使用的规范？规范是什么？
+commonjs
+
+4. watch和computed的区别？
+都可以监控对象，当这些对象发生了改变，可以触发回调函数做一些逻辑处理。
+被监听的属性为计算属性；
+计算属性会依赖于他使用的data中的属性，只要是依赖的属性值改变，则自动重新调用一下计算属性。
+使用computed时，如果它所依赖的这些属性值没有发生改变，那么计算属性的值是从缓存中来的，而不是重新编译，性能比较高，所以在vue中尽可能使用computed替代watch。
+
+区别在于，使用computed时，fullName（计算属性）不需要赋值，从定义中获取
+
+
+4.webpack
+是一个资源的打包工具，有两个版本，可以将 .js, .css , image等静态资源当做一个模块来进行打包。
+
+webpack本身不支持css,less,sass,js,image等相关资源的打包工作的，它仅仅提供了一个基础的框架，在这个框架上借助于相关的loader才可以实现css,less,sass,js,image等相关资源的打包工作,比如有有css-loader等等
+
+所以，webpack是基于loader开发的,每一个模块都是有一个对应的loader来实现。
+
+在下载的时候，默认会从国外的服务器下载，因为需要先下载nrm工具来改变下载的路径，加快下载的速度。（npm install nrm -g）然后再全局安装webpack（npm install webpack@1.14.0 -g）
+
+当我们使用--save下载的时候，会把相应的包的版本号放进依赖中，后人只要使用npm i（install）命令和根据package.json文件就能还原相应的包，package.json文件通过指令npm init得到，用来存放相关的loader包
+
+
+5. webpack和gulf
+都依赖nodejs
+
+6.选择组件的原则？
+有完整明确的文档；
+丰富的组件和样式；
+易开发，满足需求；
+一般在公司都是基于组件开发的；
+
+7.你知道哪些支持vue的第三方组件吗？
+mint-ui
+全局导入和选择导入
+
+
+8.项目开发
+
+项目结构
+dist:webpack发布以后的文件存储的目录
+
+src:开发阶段源码存储的目录
+         01. component:Vue组件页面存放区（每一个组件在一个文件夹中，子组件存在与特定的文件夹中）
+        02. App.vue（系统根组件）和main.js（webpack打包的入口文件）
+
+statics:项目静态资源文件
+     css（全局的样式）+imgs（图片）+mui（第三方组件）
+
+kit:存储的是公共的js结构
+    common.js
+
+index1.html     项目模板文件
+.gitignore git    忽略文件
+package.json    NodeJS包管理文件
+Readme.md     项目说明文件
+webpack.config.js    webpack配置文件
+还有一个隐藏的node_modules文件夹，负责存放webpack相关的loader以及vue,vue-router,vue-resource,mint-ui等包文件
+
+项目分析：
+1. tab底部选项卡点击变样式的实现？
+使用第三方组件---mui组件，
+在设置路由的实现，默认对当前tab添加“router-link-active”，即linkActiveClass.换成"mui-active"（在定义路由规则中实现）
+
+2.首页的实现
+轮播图的实现：第三方组件（mint-ui），必须设置高度才能显示出来；图片的宽度设置100%才能完全显示出来；
+图片是从网络请求来的（要下载包vue-source），当数据出现异常时，使其出现吐司;
+请求数据时，获取数据的方法必须在created这个时期调用，因为当页面中的data和methods对象都创建完毕之后，就会自动调用这个生命周期中的方法，但方法的具体逻辑（发送请求获取数据）在methods中。
+
+中间部分：mui中的九宫格
+图片为本地图片，添加背景图片，使默认添加的伪元素为空，使其尺寸为cover.
+处理每个图标的路由，将a标签换成router-link
+
+3.新闻资讯的实现
+点击新闻资讯，出现单页面的效果。所以要设置路由。
+当vue-router路由对象监控到这样一个跳转的时候，就会去系统启动时候注册好的路由规则中匹配路由，找到对应的注册好的组件。
+
+设置每个路由，新建对应的.vue文件。将.vue文件导出，并在入口文件中导入。并且要在路由规则中，添加相对应的路由和组件。
+
+新闻资讯跳转的页面：
+先将新闻列表静态结构和样式设计好，数据先用死数据填充好；
+2.0开发要按照vue的编写结构（MVVM）模式来编写静态结构。
+利用v-for对数据进行遍历，最后使用vue-resource中的get请求到api中的数据，再赋值给List，使得数据动态化。
+
+
+
+日期格式化：使用全局过滤器来实现。原因是日期格式化的这个业务功能可能在多个组件页面上都要使用。要保证全局那么必须使用Vue.filter('datefmt',function(input,fmtstring){}).全局过滤器datefmt要想在所有的组件页面中使用，则必须在webpack的入口文件main.js注册实现。
+
+过滤器逻辑的实现：在这里使用momentjs类库来实现日期的格式化功能。先安装包，再实现逻辑.
+
+
+4.点击新闻列表进入到详情页面newsinfo
+设置路由时，动态绑定id，因为点击每一条数据显示的内容都是不同的。
+表示形式：
+v-bind的作用：给指定的html元素动态绑定新的特性
+ <router-link v-bind="{to:'/news/newsinfo/'+item.id}">
+
+将每条新闻的id传递到newsinfo.vue中，请求对应的数据。
+实现的逻辑为：路由传递参数的逻辑。
+id在data中的初始值为0，
+created(){
+            /*获取url传入的id参数，赋值给data中的id属性*/
+            this.id = this.$route.params.id;
+        }
+列表中的数据都是从真实的网络中请求来。
+
+
+
+抽取地址url相同的部分：
+kit文件夹中的common.js文件专门用于处理相同部分的数据的抽取处理。将其导出，并按需导入的需要的地方。完成url的拼接。好处是当url地址变动的时候不用一个一个去更改，省去麻烦的操作。
+
+
+5.评论comment.vue（在subcom文件夹中）是newsinfo的子组件
+01.根据业务需求，该组件就需要知道当前给哪条数据进行评论，所以要先确定提交评论的api是什么。
+http://wxtest.centaline.com.cn/api/api?type=getcomments&artid=59f179e5e370ee17f05af22d&pageindex=1
+所以artid就是我们要评论的数据id
+所以我们要如何获取到这个数据的真实id值呢？
+逻辑：父组件向子组件传递消息
+由于在newsinfo.vue组件中已经获取到了这条资讯的id，所以在使用comment的时候只需要将这个id传递进去即可。这里其实就是涉及到父组件向子组件传递值的技术。
+
+父组件的传值如何写？
+1.在comment.vue（子组件）中定义一个props:['id']
+2.在父组件中定义的组件comment标签<comment>通过:id="传递的id参数变量"
+(子组件传值给父组件：
+子组件：定义一个方法，在方法中的逻辑是将数据发送出去this.$emit('send','hello')
+父组件：v-on:send="getData",该方法中的参数就是子组件传递过来的值)
+
+
+
+
+6.实现发表功能分为三大块:
+1.实现评论数据的提交
+步骤：01.设计好静态结构；
+            02.在发表按钮上注册一个事件postcomment，实现数据的ajax请求，通过post方法或get方法将评论提交给api，最后清空评论框中的内容
+在实现上面两个步骤之前，先实现父子组件的传递值的过程
+
+2.实现评论数据的获取
+步骤：01.静态结构的设计；（使用mui的列表样式来实现）
+            02.通过ajax的get请求
+http://wxtest.centaline.com.cn/api/api?type=getcomments&artid=?&pageindex=1
+来获取评论的数据
+
+02.获取评论数据，必须要知道是获取那条咨询的评论数据，唯一的标识就是要知道id为多少，这个id其实在使用子组件的时候已经传递过来了。
+通过ajax请求http://wxtest.centaline.com.cn/api/api?type=getcomments&artid=?&pageindex=？就可以获取到评论数据
+
+3.实现评论数据的加载更多功能
+思路：知道了api获取到第一页数据以及存储到了list的数据中了 
+当点击加载更多的时候，要将当前的api中的pageindex的值增加1以后去请求，所以应该使用一个全局的pageindex来保存当前请求的页码；
+那么最新页码的数据获取后，只需要追加到list数组后面即可。实现的方法：var list = list.concat([3,4,5])
+
+加载更多的实现：
+其实就是实现分页功能。由于这个api上的pageindex参数表示获取分页数据，默认是获取第1页数据。所以当点击加载更多的时候，只需要将pageindex的值叠加一即可获取到新的数据(触发事件)。一直到没有数据为止。
+
+
+7. 图片分享的详情页
+01.设置路由实现单页面跳转的效果
+02.按照分类实现不同图片的加载功能（发送网络请求获取数据）
+点击不同的分类标题，显示下面不同的分类。
+实现点击事件，传入相对应的id（item.id）
+在created中调用方法显示全部中的分类，全部的id为0；
+
+动态计算ul的宽度：使用v-bind（动态改变dom 元素的属性）
+03.展示分类下面的图片
+使用mint-ui中的延迟加载图片的组件，可以节省流量
+
+04.点击某张图片跳转到这个图片的详情页（photoInfo）
+配置路径，使用v-bind对路径进行拼接，注意id是不同的；
+通过Mui的九宫格展示图片
+05.当用户点击其中一张图片的时候，要预览这种大图
+这里采取的是单独的vue组件vue-preview（导包并使用该对象）根据作者的要求需要添加配置文件，每次修改配置文件需要重新编译。
+缩放效果的实现：
+在每个对象中添加对象，通过forEach遍历当前数组，item就是当前数组的每个对象，然后添加对象。
+res.body.message.forEach(function(item){
+                var img = document.createElement('img');
+                 img.src=item.src;
+	item.w = img.width;
+	item.h = img.height;
+})
+
+
+06.下面评论的实现
+集成子组件的内容
+(不能评论成功，是因为服务器后台的接口没有实现)
+
+
+8.商品购物的详情页
+设置路径，在入口文件中设置路由规则；
+详情页使用到了mui的图文列表组件，数据是从网络请求过来的，通过绑定数据实现数据的动态化。
+
+9.商品详情页的详情页
+01.设置路由实现单页面效果；
+
+02.将轮播图抽取成公共的组件，便于复用：
+在父组件Home中导入子组件，并设置其显示的区域，并传递数据给子组件；
+注意父子传参的问题，传递的参数是定义在data中的数组（值是从网络请求过来的）。
+子组件接受父组件传递的数据
+将轮播图组件集成到相应的文件中；
+
+03.处理页面的静态结构，然后通过发送网络请求，使得数据动态化
+
+04.点击图文详情，跳转到图文详情的页面
+设置路由，实现单页面跳转的效果；
+使数据动态化
+
+05.点击商品评论，跳转到商品评论的页面
+导入商品评论组件，集成进来
+
+06.逻辑实现购买区域的"+"和"-"组件
+抽取成独立的组件。然后将组件导入到商品详情页面（逻辑是当点击+时，拿到数值使其++；当点击-时，拿到数值使其--）数量值是现在data中定义好的，下面只要this.count就能拿到这个数值；
+
+07.实现点击购物车的功能：
+需要获取当前购买的个数，这是涉及到组件相互间发送消息。
+
+当点击“+”和“-”的时候，调用发送信息的方法，实现发送信息的功能。
+发送信息的内容为购买的个数，即为count;
+ sendMessage(){
+               this.$emit('dataObj',this.count);
+           }
+
+被集成的组件在父组件内，接收子组件发送过来的信息。
+<clickNum class="inputNum" v-on:dataObj="getCount"></clickNum>
+getCount的参数即为消息的内容，将传递过来的参数赋值给data中定义的变量，拿到购买的数量；
+
+后面是比较复杂的问题：两个不相干的组件如何传值？
+
+08.定义一个全局的vue，方便后面传值，显示徽章的个数（vm.js）
+
+内存中至始至终只有一个Vue,在定义一个Vue是为了方面后面传值。
+一般的this指代当前的vm对象，因此需要区分是哪个vm；是默认的还是工具包的；
+
+需求：当点击加入购物车时，将数值传递给购物车图标上面的徽章，即徽章个数与购物数量相同。
+
+01.vm.js（全局的文件，类似于main.js）
+导入Vue
+导出常量值：购买的数量
+导出vm（按需导出）
+
+import Vue from 'Vue';
+export const COUNT= "inputNum";
+export var vm = new Vue();
+
+02.在目标文件goodInfo中使用（导入）vm和常量COUNT
+ import {vm,COUNT} from '../../kit/vm.js';
+
+03.点击加入购物车，触发事件
+
+注意：有路由跳转的使用router-link包裹；只是触发点击事件做一些操作的，而不是单页面跳转的，使用@click=""触发事件；
+
+在点击购物车触发的事件中，将购买的数量值传递出去；
+ GoCar(){
+                vm.$emit(COUNT,this.inputNum);
+            }
+
+注意不是this,因为两者不是父子关系。之前的this只是代表本区域内原本的Vue管辖区域，这不是我们想要的。必须是导入的vm，是工具包的vm
+
+04.App.vue现在是接受者，接受事件
+
+ import {vm,COUNT} from './kit/vm.js';
+
+    /*接受传递过来的数据*/
+    vm.$on(COUNT,function (count) {
+
+        /*1.0将count值追加到购物车上*/
+        var badgeObj = document.querySelector('.mui-badge');
+        badgeObj.innerText = parseInt(badgeObj.innerText)+count;
+    });
+
+05.设置一个公共区域用来保持公共数据localStorage（属于工具类，可直接拿过来使用）
+在点击加入购物车后要将数据追加保持在localStorage
+在目标页面中，导入相应的函数和值
+import {setItem,valueObj} from '../../kit/localStor';
+并将数据保存到本地存储中（公共区域）
+ /*将数据保存到localStorage中*/
+		方便后面获取购物车的数据做id的拼接，因为购物车的数据是根据id的个数获得的；
+                valueObj.goodsId = this.id;
+                valueObj.count = this.inputNum;
+                setItem(valueObj);
+
+
+06.点击加入购物车的时候，小球滑动的效果
+小球飞入的动画需求：
+只是要求小球从数量的位置飞入购物车tabbar徽章的位置，以此循环；这种需求其实是实现了一半的动画（只从无到有这个动画，而没有从有到无的动画）
+
+001.使用原生或者animated.css来控制动画，或者vue中过渡动画的钩子函数（自定义动画）来实现动画
+
+需要两组动画函数
+第一组：动画从无到有（动画出现）
+beforeEnter：动画即将出现的控制。一般在这个里面定义当前动画的起始位置el.style.transform="translate(0,0)";
+
+enter:动画出现过程。一般在这个里面定义当前动画的结束位置，同时调用done()方法完成动画结束的标志el.offsetWidth = el.style.transform = "translate(70px,336px);done();
+
+afterEnter:动画出现完毕，我们要设置当前动画的初始装填；this.isShow = !this.isShow
+
+
+具体过程：
+要有一个小球，默认是隐藏的；
+当点击加入购物车时，小球是现实的；
+给小球设置动画，并控制动画：
+ transition: all 0.4s ease;
+实现动画的具体过程：
+<transition 
+	name="show" 
+	@before-enter="beforeEnter" 
+	@enter="Enter" 
+	@after-enter="afterEnter">
+                        <div class="ball" v-if="isShow"></div>
+</transition>
+
+实现三个动画的逻辑：
+
+            beforeEnter(el){
+                /*设置小球的初始位置*/
+                el.style.transform = "translate(0,0)"
+            },
+
+            Enter(el,done){
+                /*保证小球出现动画*/
+                el.offsetWidth;
+
+                /*设置小球的结束位置*/
+                el.style.transform = "translate(80px,202px)";
+
+                /*结束动画*/
+                done();
+            },
+            afterEnter(el){
+                /*重置小球的初始状态*/
+                this.isShow = !this.isShow;
+            }
+
+
+07.实现购物车的页面
+先搭建静态的页面，注意开关按钮是使用mint-ui中的switch组件；如果有多种商品，则有多个开关，但是开关使用的是同一个双向数据绑定的value，要使其分开：<mt-switch v-model="value[index]" class="switch"></mt-switch>
+初始值为： value:[]
+
+（购物车实现的逻辑）
+自定义一个方法，目的是使得数据的动态化：
+7.1 从localStorage中获取到所有商品的id。
+所以要导入工具类中的获得商品的方法，然后遍历拿到的数组，取得里面的id值用逗号进行拼接；
+
+
+接下来就是要设置增加和减少商品的组件（子组件）。
+我们需要获取子组件的id值和count值，然后修改网络请求中的id值。
+
+
+7.2 将id值按照api的参数格式提交给api
+7.3 ajax请求这个api获取到完整的商品数据信息赋值给this.dataList
+
+将localStorage中所有的商品对应的count值赋值给message中每个对象的cou
+
+
+需要导入之前的增加和减少的组件，但是数据不同，因此不能再复制一份，修改后导进去。
+
+
+商品增加减少导进来后，还有一个问题，就是自己本身也要加减，加减影响到本地存储和定义的数组；其中有一个是子组件向父组件传值的问题。
+
+在子组件中，当点击当增加或减少的时候，触发发送消息的函数，并传递参数记录当前是增加还是减少，并将触发的类型和id包装成一个对象发送给父组件 
+
+父组件接收子组件传递过来的对象；
+在购物车增加或减少商品数量的时候，最后都要在localStorage中进行更新；
+调用工具函数中的更新内存数据的方法，然后更新this.datalist中的当前数量（通过遍历数组的长度，然后根据id匹配是点击了哪一个，再判断点击的类型是增加还是减少，如果是增加就将数量自增，如果是减少就将数量自减）
+
+当点击删除的时候，调用工具包中的删除方法，然后调用，还需要删除数组和value这个数组中的相对应的id的哪一行。
+
+返回按钮的实现：监听路由的变化，设置其显示或者隐藏；在控制是否单击返回哪个页面的时候，需要触发点击事件，这个时候需要使用vue-router中的方法，利用路由对象中的go(-1)来实现返回到上一级页面
+this.$router.go(-1);
+
+
+打包：在package.json中加一句命令：“dist”：“webpack -p”;
+然后执行命令npm run dist进行打包
+
+ES6的特点？
+（箭头函数的特点：修改了this指向，简化了函数的书写，）
+priomise:解决回调层层叠进的问题。
+
+
+启动异步任务,实现商品列表懒加载的效果。
+
+v-bind:动态绑定数据、指令；
+
+H5中的数据存储：
+localStorge:没有时间限制的存储，（永久存储），能够存储20M
+cookie:保存在浏览器上，有存储数量的显示，只能存储4k
+session:关闭浏览器窗口，数据删除。用处不大
+
